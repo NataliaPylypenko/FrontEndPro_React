@@ -1,13 +1,94 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  /* Typography */
+  --ff_main: 'Roboto', sans-serif;
+  --fz-main: 14px;
+  --fw-main: 400;
+  --lh-main: 1.2;
+
+  /* Main color */
+  --danger: #C71254;
+  --warning: #F0C20C;
+  --success: #6ECC39;
+  --primary: #0D47A1;
+
+  /* Accent color */
+  --darkAccent: #2C5E83;
+  --accent: #459DDD;
+  --lightAccent: #B3D8FC;
+
+  /* Neutral Color */
+  --black: #000;
+  --darkGray: #4a4a4a;
+  --gray: #969FA8;
+  --lightGray: #EEEFF0;
+  --white: #FFF;
+}
+
+.body {
+  font-family: var(--ff_main);
+  font-size: var(--fz-main);
+  line-height: var(--lh-main);
+  font-weight: var(--fw-main);
+  color: var(--darkGray);
+  background-color: var(--lightGray);
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/*--------------------- /General ---------------------*/
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px){
+  .row {
+    flex-direction: column;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1450px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+@media (max-width: 1493px){
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (max-width: 1199px){
+  .container {
+    max-width: 962px;
+  }
+}
+@media (max-width: 991px){
+  .container {
+    max-width: 738px;
+  }
+}
+@media (max-width: 767px){
+  .container {
+    max-width: 620px;
+  }
+}
+@media (max-width: 639px){
+  .container {
+    max-width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 }
