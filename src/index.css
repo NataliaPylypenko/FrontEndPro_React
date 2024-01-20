@@ -11,7 +11,7 @@
   --fw-main: 400;
   --lh-main: 1.2;
 
-  /* Main color */
+  /* Table color */
   --danger: #C71254;
   --warning: #F0C20C;
   --success: #6ECC39;
@@ -39,25 +39,7 @@
   background-color: var(--lightGray);
 }
 
-/* Fake image, just for this example */
-.fakeimg {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
-}
-
 /*--------------------- /General ---------------------*/
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 767px){
-  .row {
-    flex-direction: column;
-  }
-}
 
 .container {
   width: 100%;
