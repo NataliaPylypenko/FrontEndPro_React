@@ -4,7 +4,7 @@ const NavbarContainer = styled.div`
  overflow: hidden;
   background-color: #333;
   
-  a {
+  span {
     float: left;
     display: block;
     color: white;
@@ -18,11 +18,11 @@ const NavbarContainer = styled.div`
     }
   }
   
-  a.right {
+  span.right {
     float: right;
   }
   
-  a:hover {
+  span:hover {
     background-color: #ddd;
     color: black;
   }
@@ -31,10 +31,10 @@ const NavbarContainer = styled.div`
 export default function Navbar() {
     return (
         <NavbarContainer>
-            <a href="#">Link</a>
-            <a href="#">Link</a>
-            <a href="#">Link</a>
-            <a href="#" className="right">Link</a>
+            <span>Link</span>
+            <span>Link</span>
+            <span>Link</span>
+            <span className="right">Link</span>
         </NavbarContainer>
     );
 }
