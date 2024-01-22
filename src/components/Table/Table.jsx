@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './Table.module.css';
+import {shuffle} from "../../utils/shuffle";
 
 class Table extends React.Component {
     constructor(props) {
@@ -7,9 +8,8 @@ class Table extends React.Component {
 
         this.state = {
             list: this.props.list || [],
-            arrayOfIndexes: this.generateRandomIndexArray(this.props.list) || [],
+            randomIndexArray: this.shuffleArray(this.props.list) || [],
             selectedElements: [],
-            currentIndex: 0,
             color: 'black',
             fontWeight: 'normal',
             borderWidth: '0',
@@ -25,29 +25,21 @@ class Table extends React.Component {
         clearInterval(this.interval);
     }
 
-    generateRandomIndexArray(array) {
-        const randomIndexArray = [...Array(array.length).keys()];
-
-        for (let i = randomIndexArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [randomIndexArray[i], randomIndexArray[j]] = [randomIndexArray[j], randomIndexArray[i]];
-        }
-
-        return randomIndexArray;
-    }
+    shuffleArray = (array) => shuffle([...Array(array.length).keys()]);
 
     selectRandomElement = () => {
-        const { list, arrayOfIndexes, selectedElements, currentIndex } = this.state;
-        const allCount = list.length;
-        const halfCount = Math.ceil(allCount / 2);
-        const newSelectedElements = [...selectedElements, list[arrayOfIndexes[currentIndex]].type];
+        const { list, randomIndexArray, selectedElements } = this.state;
+        const nextIndex = randomIndexArray.shift();
+        const newSelectedElements = [...selectedElements, list[nextIndex].type];
 
         this.setState({
             color: '#1abc9c',
             fontWeight: 'bold',
             selectedElements: newSelectedElements,
-            currentIndex: currentIndex + 1,
         });
+
+        const allCount = list.length;
+        const halfCount = Math.ceil(allCount / 2);
 
         if (newSelectedElements.length >= halfCount) {
             this.setState({
