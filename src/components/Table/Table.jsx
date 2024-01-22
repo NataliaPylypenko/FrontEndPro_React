@@ -1,31 +1,5 @@
 import React from "react";
-import { styled } from 'styled-components';
-
-const TableContainer = styled.table `
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 500px;
-  margin: 30px auto;
-  border: 1px solid #ddd;
-  
-  thead {
-   color: #fff;
-   background-color: #1abc9c;
-  }
-  
-  th, td {
-    text-align: center;
-    padding: 16px;
-  }
-    
-  th:first-child, td:first-child {
-    text-align: left;
-  }
-    
-  tr:nth-child(even) {
-    background-color: #f2f2f2
-  }
-`;
+import styles from './Table.module.css';
 
 class Table extends React.Component {
     constructor(props) {
@@ -93,7 +67,7 @@ class Table extends React.Component {
         const { list, color, fontWeight, borderWidth, borderColor, selectedElements } = this.state;
 
         return (
-            <TableContainer style={{ border: `${borderWidth} solid ${borderColor}` }}>
+            <table className={styles.table} style={{ border: `${borderWidth} solid ${borderColor}` }}>
                 <thead>
                     <tr>
                         <th>Type</th>
@@ -114,7 +88,7 @@ class Table extends React.Component {
                     </tr>
                 )}
                 </tbody>
-            </TableContainer>
+            </table>
         )
     }
 }

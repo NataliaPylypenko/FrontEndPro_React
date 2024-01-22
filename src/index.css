@@ -7,7 +7,7 @@
 :root {
   /* Typography */
   --ff_main: 'Roboto', sans-serif;
-  --fz-main: 14px;
+  --fz-main: 16px;
   --fw-main: 400;
   --lh-main: 1.2;
 
@@ -37,6 +37,13 @@
   font-weight: var(--fw-main);
   color: var(--darkGray);
   background-color: var(--lightGray);
+}
+
+.wrapper {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  gap: 30px;
 }
 
 /*--------------------- /General ---------------------*/

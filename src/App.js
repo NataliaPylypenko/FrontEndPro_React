@@ -1,9 +1,7 @@
-import './App.css';
-
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import Table from "./components/Table";
-import Footer from "./components/Footer";
+import Header from "./layouts/Header";
+import Table from "./components/Table/Table";
+import Footer from "./layouts/Footer";
+import Navbar from "./layouts/Navbar";
 
 const animals = [
     {type: `turtle`, icon: `🐢`},
@@ -15,16 +13,18 @@ const animals = [
 
 function App() {
   return (
-    <>
-      <Header />
-      <Navbar />
+    <div className='wrapper'>
+      <div>
+        <Header />
+        <Navbar />
+      </div>
 
       <div className="container">
         <Table list={animals}/>
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
