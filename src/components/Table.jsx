@@ -32,37 +32,41 @@ class Table extends React.Component {
         super(props);
 
         this.state = {
-            list: this.props.list ? this.props.list : [],
-            shuffledList: this.shuffleArray(this.props.list),
+            list: this.props.list || [],
+            arrayOfIndexes: this.generateRandomIndexArray(this.props.list) || [],
+            selectedElements: [],
+            currentIndex: 0,
             color: 'black',
             fontWeight: 'normal',
             borderWidth: '0',
             borderColor: '#1abc9c',
-            selectedElements: [],
-            currentIndex: 0,
         };
-
-        this.selectRandomElement = this.selectRandomElement.bind(this);
     };
 
     componentDidMount() {
         this.interval = setInterval(this.selectRandomElement, 2000);
     }
 
-    shuffleArray(array) {
-        const shuffledArray = [...array];
-        for (let i = shuffledArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-        }
-        return shuffledArray;
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
-    selectRandomElement() {
-        const { list, shuffledList, selectedElements, currentIndex } = this.state;
+    generateRandomIndexArray(array) {
+        const randomIndexArray = [...Array(array.length).keys()];
+
+        for (let i = randomIndexArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [randomIndexArray[i], randomIndexArray[j]] = [randomIndexArray[j], randomIndexArray[i]];
+        }
+
+        return randomIndexArray;
+    }
+
+    selectRandomElement = () => {
+        const { list, arrayOfIndexes, selectedElements, currentIndex } = this.state;
         const allCount = list.length;
         const halfCount = Math.ceil(allCount / 2);
-        const newSelectedElements = [...selectedElements, shuffledList[currentIndex].type];
+        const newSelectedElements = [...selectedElements, list[arrayOfIndexes[currentIndex]].type];
 
         this.setState({
             color: '#1abc9c',
@@ -83,7 +87,7 @@ class Table extends React.Component {
             });
             clearInterval(this.interval);
         }
-    }
+    };
 
     render() {
         const { list, color, fontWeight, borderWidth, borderColor, selectedElements } = this.state;
@@ -96,22 +100,20 @@ class Table extends React.Component {
                         <th>Icon</th>
                     </tr>
                 </thead>
-                {list &&
-                    <tbody>
-                        {list.map(item =>
-                            <tr
-                                key={item.type}
-                                style={{
-                                    color: selectedElements.includes(item.type) ? color : 'black',
-                                    fontWeight: selectedElements.includes(item.type) ? fontWeight : 'normal',
-                                }}
-                            >
-                                <td>{item.type}</td>
-                                <td>{item.icon}</td>
-                            </tr>
-                        )}
-                    </tbody>
-                }
+                <tbody>
+                {list?.map(item =>
+                    <tr
+                        key={item.type}
+                        style={{
+                            color: selectedElements.includes(item.type) ? color : 'black',
+                            fontWeight: selectedElements.includes(item.type) ? fontWeight : 'normal',
+                        }}
+                    >
+                        <td>{item.type}</td>
+                        <td>{item.icon}</td>
+                    </tr>
+                )}
+                </tbody>
             </TableContainer>
         )
     }
