@@ -2,6 +2,7 @@ import Header from "./layouts/Header";
 import ClassTable from "./components/Table/ClassTable";
 import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
+import FunctionTable from "./components/Table/FunctionTable";
 
 const animals = [
     {type: `turtle`, icon: `🐢`},
@@ -20,7 +21,10 @@ function App() {
       </div>
 
       <div className="container">
-        <ClassTable list={animals}/>
+        <h1 style={{marginBottom: '30px', textAlign: 'center'}}>Class Component</h1>
+        <ClassTable list={animals} />
+
+        <FunctionTable listAnimals={animals} title='Function Component' />
       </div>
 
       <Footer />
