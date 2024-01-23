@@ -1,5 +1,5 @@
 import Header from "./layouts/Header";
-import Table from "./components/Table/Table";
+import ClassTable from "./components/Table/ClassTable";
 import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
 
@@ -20,7 +20,7 @@ function App() {
       </div>
 
       <div className="container">
-        <Table list={animals}/>
+        <ClassTable list={animals}/>
       </div>
 
       <Footer />

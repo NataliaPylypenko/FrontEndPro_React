@@ -1,20 +1,20 @@
 import React from "react";
 import styles from './Table.module.css';
-import {shuffle} from "../../utils/shuffle";
+import { shuffle } from "../../utils/shuffle";
 
-class Table extends React.Component {
+class ClassTable extends React.Component {
     constructor(props) {
         super(props);
+    };
 
-        this.state = {
-            list: this.props.list || [],
-            randomIndexArray: this.shuffleArray(this.props.list) || [],
-            selectedElements: [],
-            color: 'black',
-            fontWeight: 'normal',
-            borderWidth: '0',
-            borderColor: '#1abc9c',
-        };
+    state = {
+        list: this.props.list || [],
+        randomIndexArray: shuffle(Object.keys(this.props.list)) || [],
+        selectedElements: [],
+        color: 'black',
+        fontWeight: 'normal',
+        borderWidth: '0',
+        borderColor: '#1abc9c',
     };
 
     componentDidMount() {
@@ -24,8 +24,6 @@ class Table extends React.Component {
     componentWillUnmount() {
         clearInterval(this.interval);
     }
-
-    shuffleArray = (array) => shuffle([...Array(array.length).keys()]);
 
     selectRandomElement = () => {
         const { list, randomIndexArray, selectedElements } = this.state;
@@ -85,4 +83,4 @@ class Table extends React.Component {
     }
 }
 
-export default Table
+export default ClassTable
