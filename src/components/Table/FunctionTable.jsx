@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import TableRow from "./TableRow";
 import styles from './Table.module.css';
 import { shuffle } from "../../utils/shuffle";
@@ -11,43 +11,50 @@ const FunctionTable = ({listAnimals, title}) => {
         borderColor: '#1abc9c',
     });
 
-    const [nextIndex, setNextIndex] = useState(null);
+    const [arrays, setArrays] = useState({
+        list: listAnimals,
+        randomIndexArray: shuffle(Object.keys(listAnimals)),
+        selectedElements: []
+    });
 
-    const randomIndexArray = shuffle(Object.keys(listAnimals));
-    console.log('randomIndexArray', randomIndexArray);
+    useEffect(() => {
+        const interval = setInterval(selectRandomElement, 2000);
 
-
-    const interval = setInterval(() => selectRandomElement, 2000);
-
+        return () => clearInterval(interval);
+    }, [arrays.selectedElements]);
 
     const selectRandomElement = () => {
-        const nextIndex = randomIndexArray.pop();
-        setNextIndex(nextIndex);
-        console.log('nextIndex', nextIndex);
+        const nextIndex = arrays.randomIndexArray.pop();
+        if (nextIndex === undefined) return;
+
+        const newSelectedElements = [...arrays.selectedElements, arrays.list[nextIndex].type];
 
         setLook(prevStyles => ({
             ...prevStyles,
             color: '#1abc9c',
-            fontWeight: 'bold',
+            fontWeight: 'bold'
         }));
 
-        const allCount = listAnimals.length;
+        setArrays(prevStyles => ({
+            ...prevStyles,
+            selectedElements: newSelectedElements
+        }));
+
+        const allCount = arrays.list.length;
         const halfCount = Math.ceil(allCount / 2);
 
-        if (listAnimals.length >= halfCount) {
+        if (newSelectedElements.length >= halfCount) {
             setLook((prevStyles) => ({
                 ...prevStyles,
                 borderWidth: '10px',
             }));
         }
 
-        if (listAnimals.length === allCount) {
+        if (newSelectedElements.length === allCount) {
             setLook(prevStyles => ({
                 ...prevStyles,
                 borderWidth: '20px',
             }));
-
-            clearInterval(interval);
         }
     };
 
@@ -55,7 +62,7 @@ const FunctionTable = ({listAnimals, title}) => {
         <>
             <h1 style={{margin: '30px 0', textAlign: 'center'}}>{title}</h1>
 
-            <table className={styles.table}>
+            <table className={styles.table} style={{ border: `${look.borderWidth} solid ${look.borderColor}` }}>
                 <thead>
                 <tr>
                     <th>Type</th>
@@ -68,8 +75,8 @@ const FunctionTable = ({listAnimals, title}) => {
                         key={item.type}
                         item={item}
                         style={{
-                            color: index === nextIndex ? '#1abc9c' : '#000',
-                            fontWeight: index === nextIndex ? 'bold' : 'normal',
+                            color: arrays.selectedElements.includes(item.type) ? look.color : 'black',
+                            fontWeight: arrays.selectedElements.includes(item.type) ? look.fontWeight : 'normal',
                         }}
                     />
                 )}

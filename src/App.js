@@ -21,10 +21,10 @@ function App() {
       </div>
 
       <div className="container">
-        <h1 style={{marginBottom: '30px', textAlign: 'center'}}>Class Component</h1>
-        <ClassTable list={animals} />
-
         <FunctionTable listAnimals={animals} title='Function Component' />
+
+        <h1 style={{margin: '30px 0', textAlign: 'center'}}>Class Component</h1>
+        <ClassTable list={animals} />
       </div>
 
       <Footer />
