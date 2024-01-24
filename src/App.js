@@ -23,8 +23,7 @@ function App() {
       <div className="container">
         <FunctionTable listAnimals={animals} title='Function Component' />
 
-        <h1 style={{margin: '30px 0', textAlign: 'center'}}>Class Component</h1>
-        <ClassTable list={animals} />
+        <ClassTable list={animals} title='Class Component' />
       </div>
 
       <Footer />

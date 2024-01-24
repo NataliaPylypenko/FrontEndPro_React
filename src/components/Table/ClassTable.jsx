@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './Table.module.css';
 import { shuffle } from "../../utils/shuffle";
+import TableRow from "./TableRow";
 
 class ClassTable extends React.Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class ClassTable extends React.Component {
     };
 
     state = {
+        title: this.props.title,
         list: this.props.list || [],
         randomIndexArray: shuffle(Object.keys(this.props.list)) || [],
         selectedElements: [],
@@ -54,31 +56,33 @@ class ClassTable extends React.Component {
     };
 
     render() {
-        const { list, color, fontWeight, borderWidth, borderColor, selectedElements } = this.state;
+        const { title, list, color, fontWeight, borderWidth, borderColor, selectedElements } = this.state;
 
         return (
-            <table className={styles.table} style={{ border: `${borderWidth} solid ${borderColor}` }}>
-                <thead>
+            <>
+                <h1 style={{margin: '30px 0', textAlign: 'center'}}>{title}</h1>
+
+                <table className={styles.table} style={{ border: `${borderWidth} solid ${borderColor}` }}>
+                    <thead>
                     <tr>
                         <th>Type</th>
                         <th>Icon</th>
                     </tr>
-                </thead>
-                <tbody>
-                {list?.map(item =>
-                    <tr
-                        key={item.type}
-                        style={{
-                            color: selectedElements.includes(item.type) ? color : 'black',
-                            fontWeight: selectedElements.includes(item.type) ? fontWeight : 'normal',
-                        }}
-                    >
-                        <td>{item.type}</td>
-                        <td>{item.icon}</td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {list?.map(item =>
+                        <TableRow
+                            key={item.type}
+                            item={item}
+                            style={{
+                                color: selectedElements.includes(item.type) ? color : 'black',
+                                fontWeight: selectedElements.includes(item.type) ? fontWeight : 'normal',
+                            }}
+                        />
+                    )}
+                    </tbody>
+                </table>
+            </>
         )
     }
 }
