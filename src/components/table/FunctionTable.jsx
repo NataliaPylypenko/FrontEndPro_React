@@ -3,7 +3,7 @@ import TableRow from "./TableRow";
 import styles from './Table.module.css';
 import { shuffle } from "../../utils/shuffle";
 
-const FunctionTable = ({listAnimals, title}) => {
+export const FunctionTable = ({listAnimals, title}) => {
     const [look, setLook] = useState({
         color: '#000',
         fontWeight: 'normal',
@@ -85,5 +85,3 @@ const FunctionTable = ({listAnimals, title}) => {
         </>
     )
 };
-
-export default FunctionTable;

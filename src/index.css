@@ -11,7 +11,7 @@
   --fw-main: 400;
   --lh-main: 1.2;
 
-  /* Table color */
+  /* table color */
   --danger: #C71254;
   --warning: #F0C20C;
   --success: #6ECC39;
@@ -80,4 +80,8 @@
     padding-right: 10px;
     padding-left: 10px;
   }
+}
+
+.active {
+  color: #1abc9c;
 }

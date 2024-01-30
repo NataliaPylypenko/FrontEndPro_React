@@ -3,7 +3,7 @@ import styles from './Table.module.css';
 import { shuffle } from "../../utils/shuffle";
 import TableRow from "./TableRow";
 
-class ClassTable extends React.Component {
+export class ClassTable extends React.Component {
     constructor(props) {
         super(props);
     };
@@ -86,5 +86,3 @@ class ClassTable extends React.Component {
         )
     }
 }
-
-export default ClassTable

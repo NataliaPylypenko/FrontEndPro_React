@@ -28,12 +28,12 @@ const NavbarContainer = styled.div`
   }
 `;
 
-export default function Navbar() {
+export default function Navbar({ counter }) {
     return (
         <NavbarContainer>
             <span>Link</span>
             <span>Link</span>
-            <span>Link</span>
+            <span>{counter}</span>
             <span className="right">Link</span>
         </NavbarContainer>
     );
