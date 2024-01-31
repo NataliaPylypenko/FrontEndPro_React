@@ -1,7 +1,7 @@
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
-import { FunctionTable, ClassTable, Counter } from "./components";
+import {FunctionTable, ClassTable, Counter, Temperature} from "./components";
 import React, {Component} from "react";
 
 const animals = [
@@ -37,15 +37,32 @@ class App extends Component {
                     <Navbar counter={this.state.counter} />
                 </div>
 
-                <div className="container">
-                    <Counter
-                        counter={this.state.counter}
-                        onClickPlusCounter={this.onClickPlus.bind(this)}
-                        onClickMinusCounter={this.onClickMinus.bind(this)}
-                    />
+                <div className="section">
+                    <div className="container">
+                        <Counter
+                            counter={this.state.counter}
+                            onClickPlusCounter={this.onClickPlus.bind(this)}
+                            onClickMinusCounter={this.onClickMinus.bind(this)}
+                        />
+                    </div>
+                </div>
 
-                    <FunctionTable listAnimals={animals} title='Function Component' />
-                    <ClassTable list={animals} title='Class Component' />
+                <div className="section chromatic">
+                    <div className="container">
+                        <Temperature />
+                    </div>
+                </div>
+
+                <div className="section">
+                    <div className="container">
+                        <FunctionTable listAnimals={animals} title='Function Component' />
+                    </div>
+                </div>
+
+                <div className="section chromatic">
+                    <div className="container">
+                        <ClassTable list={animals} title='Class Component' />
+                    </div>
                 </div>
 
                 <Footer />

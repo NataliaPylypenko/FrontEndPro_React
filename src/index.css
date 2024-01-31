@@ -18,9 +18,9 @@
   --primary: #0D47A1;
 
   /* Accent color */
-  --darkAccent: #2C5E83;
-  --accent: #459DDD;
-  --lightAccent: #B3D8FC;
+  --darkAccent: #48c9b0;
+  --accent: #8ddece;
+  --lightAccent: #d1f2eb;
 
   /* Neutral Color */
   --black: #000;
@@ -80,6 +80,12 @@
     padding-right: 10px;
     padding-left: 10px;
   }
+}
+
+.section {}
+.chromatic {
+  padding: 30px 0;
+  background-color: var(--lightAccent);
 }
 
 .active {
