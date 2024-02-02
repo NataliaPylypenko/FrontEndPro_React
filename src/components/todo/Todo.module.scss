@@ -1,0 +1,62 @@
+/* Style the list items */
+.items {
+  position: relative;
+  padding: 24px;
+  background: #eee;
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.item {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  user-select: none;
+  list-style-type: none;
+  border-bottom: 1px solid #fff;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: #ddd;
+  }
+}
+
+.completed {
+  background: #888;
+  color: #fff;
+
+  &::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 14px;
+    left: 7px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+  }
+
+  p {
+    text-decoration: line-through;
+  }
+}
+
+.btn {
+  border: none; /* Remove borders */
+  color: white; /* Add a text color */
+  padding: 7px 14px; /* Add some padding */
+  cursor: pointer; /* Add a pointer cursor on mouse-over */
+  background-color: #04AA6D;
+}

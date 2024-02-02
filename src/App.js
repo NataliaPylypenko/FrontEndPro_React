@@ -1,7 +1,7 @@
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
-import {FunctionTable, ClassTable, Counter, Temperature} from "./components";
+import {FunctionTable, ClassTable, Counter, Temperature, TodoList} from "./components";
 import React, {Component} from "react";
 
 const animals = [
@@ -13,8 +13,49 @@ const animals = [
 ];
 
 class App extends Component {
+
+    // componentDidMount() {
+    //     setTimeout(() => {
+    //         this.setState({
+    //             showTodoList: false,
+    //         })
+    //     }, 3000)
+    //
+    //     // clearInterval()
+    //     // clearTimeout()
+    //     // removeEventListener()
+    // }
+
     state = {
-        counter: 10
+        counter: 10,
+        list: [
+            {
+                id: 1,
+                title: 'Task1',
+                completed: true
+            },
+            {
+                id: 2,
+                title: 'Task2',
+                completed: false
+            },
+            {
+                id: 3,
+                title: 'Task3',
+                completed: false
+            },
+            {
+                id: 4,
+                title: 'Task4',
+                completed: false
+            },
+            {
+                id: 5,
+                title: 'Task5',
+                completed: false
+            }
+        ],
+        showTodoList: true,
     };
 
     onClickPlus() {
@@ -37,13 +78,19 @@ class App extends Component {
                     <Navbar counter={this.state.counter} />
                 </div>
 
-                <div className="section">
+                <div className="section chromatic">
                     <div className="container">
                         <Counter
                             counter={this.state.counter}
                             onClickPlusCounter={this.onClickPlus.bind(this)}
                             onClickMinusCounter={this.onClickMinus.bind(this)}
                         />
+                    </div>
+                </div>
+
+                <div className="section">
+                    <div className="container">
+                        {this.state.showTodoList && <TodoList list={this.state.list} />}
                     </div>
                 </div>
 
