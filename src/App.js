@@ -3,6 +3,7 @@ import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
 import {FunctionTable, ClassTable, Counter, Temperature, TodoList} from "./components";
 import React, {Component} from "react";
+import Controller from "./components/controller/Controller";
 
 const animals = [
     {type: `turtle`, icon: `🐢`},
@@ -78,13 +79,19 @@ class App extends Component {
                     <Navbar counter={this.state.counter} />
                 </div>
 
-                <div className="section chromatic">
+                <div className="section">
                     <div className="container">
                         <Counter
                             counter={this.state.counter}
                             onClickPlusCounter={this.onClickPlus.bind(this)}
                             onClickMinusCounter={this.onClickMinus.bind(this)}
                         />
+                    </div>
+                </div>
+
+                <div className="section chromatic">
+                    <div className="container">
+                        <Controller />
                     </div>
                 </div>
 
