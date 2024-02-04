@@ -1,7 +1,7 @@
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
-import {FunctionTable, ClassTable, Counter, Temperature, TodoList} from "./components";
+import {FunctionTable, ClassTable, Counter, Temperature, TodoList, Blocks} from "./components";
 import React, {Component} from "react";
 import Controller from "./components/controller/Controller";
 
@@ -54,6 +54,31 @@ class App extends Component {
                 id: 5,
                 title: 'Task5',
                 completed: false
+            },
+            {
+                id: 6,
+                title: 'Task6',
+                completed: true
+            },
+            {
+                id: 7,
+                title: 'Task7',
+                completed: false
+            },
+            {
+                id: 8,
+                title: 'Task8',
+                completed: false
+            },
+            {
+                id: 9,
+                title: 'Task9',
+                completed: false
+            },
+            {
+                id: 10,
+                title: 'Task10',
+                completed: false
             }
         ],
         showTodoList: true,
@@ -77,6 +102,12 @@ class App extends Component {
                 <div>
                     <Header />
                     <Navbar counter={this.state.counter} />
+                </div>
+
+                <div className="section chromatic">
+                    <div className="container">
+                        <Blocks list={this.state.list} />
+                    </div>
                 </div>
 
                 <div className="section">

@@ -7,7 +7,7 @@
 * `src/layouts` - all layouts, what is always on the page (Header, Footer, Navbar, Sidebar...)
 * `src/mock` - all temporary files for testing and demonstration of the project
 * `src/sections` - all large blocks containing several components
-* `src/ui` - all ui, reusable components (Button, List, Item, Input...)
+* `src/ui` - all ui, reusable components (Button, Blocks, Item, Input...)
 * `src/utils` - all reusable functions, custom hooks
 
 ## GitHub Pages

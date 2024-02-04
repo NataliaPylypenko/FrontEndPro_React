@@ -89,5 +89,6 @@
 }
 
 .active {
+  justify-content: space-between;
   color: #1abc9c;
 }
