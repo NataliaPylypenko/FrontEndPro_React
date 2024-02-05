@@ -8,7 +8,7 @@ class BlockItem extends Component {
         const actions = this.props.actions;
 
         return (
-            <div style={{border: '1px solid black', padding:'20px', minWidth:'200px'}}>
+            <div style={{border: '1px solid black', padding:'20px', minWidth:'200px',display: 'flex', flexDirection: 'column'}}>
                 <ul style={{marginBottom:'20px'}}>
                     {list.map(item => (
                         <ListItem
@@ -18,14 +18,16 @@ class BlockItem extends Component {
                     ))}
                 </ul>
 
-                {list.length
-                    ? actions.map(item => (
-                        <Button key={item.id} onClick={item.action}>
-                            {item.text}
-                        </Button>
-                    ))
-                    : ''
-                }
+                <div style={{marginTop:'auto'}}>
+                    {list.length
+                        ? actions.map(item => (
+                            <Button key={item.id} onClick={item.action}>
+                                {item.text}
+                            </Button>
+                        ))
+                        : ''
+                    }
+                </div>
             </div>
         );
     }
