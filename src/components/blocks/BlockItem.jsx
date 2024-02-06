@@ -4,8 +4,7 @@ import ListItem from "./ListItem";
 
 class BlockItem extends Component {
     render() {
-        const list = this.props.list;
-        const actions = this.props.actions;
+        const {list, actions} = this.props;
 
         return (
             <div style={{border: '1px solid black', padding:'20px', minWidth:'200px',display: 'flex', flexDirection: 'column'}}>

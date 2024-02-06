@@ -23,20 +23,17 @@ export class Blocks extends Component {
 
     transferToSecond() {
         this.setState({
-            firstList: this.state.firstList.slice(1),
-            secondList: [this.state.firstList[0], ...this.state.secondList],
+            secondList: [this.state.firstList.shift(), ...this.state.secondList],
         })
     };
     transferToFirst() {
         this.setState({
-            firstList: [this.state.secondList[0], ...this.state.firstList],
-            secondList: this.state.secondList.slice(1),
+            firstList: [this.state.secondList.shift(), ...this.state.firstList],
         })
     }
     transferToThird() {
         this.setState({
-            secondList: this.state.secondList.slice(1),
-            thirdList: [this.state.secondList[0], ...this.state.thirdList],
+            thirdList: [this.state.secondList.shift(), ...this.state.thirdList],
         })
     }
     removeLastItem() {
