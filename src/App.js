@@ -1,7 +1,7 @@
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
-import {FunctionTable, ClassTable, Counter, Temperature, TodoList, Blocks} from "./components";
+import {FunctionTable, ClassTable, Counter, Temperature, TodoList, Blocks, SectionTag} from "./components";
 import React, {Component} from "react";
 import Controller from "./components/controller/Controller";
 
@@ -104,51 +104,37 @@ class App extends Component {
                     <Navbar counter={this.state.counter} />
                 </div>
 
-                <div className="section chromatic">
-                    <div className="container">
-                        <Blocks list={this.state.list} />
-                    </div>
-                </div>
+                <SectionTag className="chromatic">
+                    <Blocks list={this.state.list} />
+                </SectionTag>
 
-                <div className="section">
-                    <div className="container">
-                        <Counter
-                            counter={this.state.counter}
-                            onClickPlusCounter={this.onClickPlus.bind(this)}
-                            onClickMinusCounter={this.onClickMinus.bind(this)}
-                        />
-                    </div>
-                </div>
+                <SectionTag>
+                    <Counter
+                        counter={this.state.counter}
+                        onClickPlusCounter={this.onClickPlus.bind(this)}
+                        onClickMinusCounter={this.onClickMinus.bind(this)}
+                    />
+                </SectionTag>
 
-                <div className="section chromatic">
-                    <div className="container">
-                        <Controller />
-                    </div>
-                </div>
+                <SectionTag className="chromatic">
+                    <Controller />
+                </SectionTag>
 
-                <div className="section">
-                    <div className="container">
-                        {this.state.showTodoList && <TodoList list={this.state.list} />}
-                    </div>
-                </div>
+                <SectionTag>
+                    {this.state.showTodoList && <TodoList list={this.state.list} />}
+                </SectionTag>
 
-                <div className="section chromatic">
-                    <div className="container">
-                        <Temperature />
-                    </div>
-                </div>
+                <SectionTag className="chromatic">
+                    <Temperature />
+                </SectionTag>
 
-                <div className="section">
-                    <div className="container">
-                        <FunctionTable listAnimals={animals} title='Function Component' />
-                    </div>
-                </div>
+                <SectionTag>
+                    <FunctionTable listAnimals={animals} title='Function Component' />
+                </SectionTag>
 
-                <div className="section chromatic">
-                    <div className="container">
-                        <ClassTable list={animals} title='Class Component' />
-                    </div>
-                </div>
+                <SectionTag className="chromatic">
+                    <ClassTable list={animals} title='Class Component' />
+                </SectionTag>
 
                 <Footer />
             </div>
