@@ -1,0 +1,26 @@
+form {
+  width: 600px;
+  margin: 0 auto 20px;
+}
+ul {
+  width: 600px;
+  margin: 0 auto;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px;
+  padding: 3px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.completed {
+  background-color: #8ddece;
+}
+
+.progress {
+  background-color: bisque;
+}
