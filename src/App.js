@@ -15,18 +15,6 @@ const animals = [
 
 class App extends Component {
 
-    // componentDidMount() {
-    //     setTimeout(() => {
-    //         this.setState({
-    //             showTodoList: false,
-    //         })
-    //     }, 3000)
-    //
-    //     // clearInterval()
-    //     // clearTimeout()
-    //     // removeEventListener()
-    // }
-
     state = {
         counter: 10,
         list: [
