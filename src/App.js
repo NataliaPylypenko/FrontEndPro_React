@@ -1,7 +1,17 @@
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
-import {FunctionTable, ClassTable, Counter, Temperature, TodoList, Blocks, SectionTag, ToDo} from "./components";
+import {
+    FunctionTable,
+    ClassTable,
+    Counter,
+    Temperature,
+    TodoList,
+    Blocks,
+    SectionTag,
+    ToDo,
+    ToDoSecond
+} from "./components";
 import React, {Component} from "react";
 import Controller from "./components/controller/Controller";
 
@@ -91,6 +101,10 @@ class App extends Component {
                     <Header />
                     <Navbar counter={this.state.counter} />
                 </div>
+
+                <SectionTag className="chromatic">
+                    <ToDoSecond />
+                </SectionTag>
 
                 <SectionTag>
                     <ToDo />
