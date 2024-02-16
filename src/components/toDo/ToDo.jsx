@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {addItem, deleteItem, fetchPosts, updateItem} from "../../services/listServices";
+import {abortFetch, addItem, deleteItem, fetchPosts, updateItem} from "../../services/listServices";
 import ToDoItem from "./ToDoItem";
 import ToDoForm from "./ToDoForm";
 
@@ -86,6 +86,7 @@ export const ToDo = () => {
                     ))}
                 </ul>
             ) : null}
+            <button onClick={abortFetch}>Abort Request</button>
         </>
     );
 };

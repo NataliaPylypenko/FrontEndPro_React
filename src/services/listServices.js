@@ -1,7 +1,25 @@
+import axios from "axios";
 const API = 'https://jsonplaceholder.typicode.com/todos';
 
-export const fetchPosts = () => fetch(API)
-    .then(response => response.json());
+//! Axios
+// Response.data => {data} => data
+
+const controller = new AbortController();
+
+export const fetchPosts = () =>
+    axios.get(API, { signal: controller.signal })
+        .then(({data}) => data);
+
+export const abortFetch = () => {
+    controller.abort();
+};
+
+//! Fetch
+// Response => Response.json()
+
+// export const fetchPosts = () =>
+//     fetch(API)
+//         .then(response => response.json());
 
 export const deleteItem = id =>
     fetch(`${API}/${id}`, {
