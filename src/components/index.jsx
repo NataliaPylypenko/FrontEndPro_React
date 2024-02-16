@@ -7,3 +7,4 @@ export * from './blocks/Blocks';
 export * from './sectionTag/SectionTag';
 export * from './toDo/ToDo';
 export * from './toDo/ToDoSecond';
+export * from './themeSwitcher/ThemeSwitcher';

@@ -1,13 +1,15 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import {addItem, deleteItem, fetchPosts, updateItem} from "../../services/listServices";
 import ToDoItem from "./ToDoItem";
 import ToDoForm from "./ToDoForm";
+import ThemeContext from "../context/ThemeContext";
 
 export const ToDoSecond = () => {
     const [list, setList] = useState([]);
     const [title, setTitle] = useState('');
     const [filter, setFilter] = useState('all');
-    const [mode, setMode] = useState('light');
+
+    const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
         fetchPosts()
@@ -67,19 +69,8 @@ export const ToDoSecond = () => {
                 <option value="progress">In Progress</option>
             </select>
 
-            <hr/>
-
-            <label>
-                Theme mode
-                <input
-                    type="checkbox"
-                    defaultChecked={mode === 'light'}
-                    onChange={e => setMode(e.target.checked ? 'light' : 'dark')}
-                />
-            </label>
-
             {list.length ? (
-                <ul className={mode}>
+                <ul className={theme}>
                     {filteredList.map(item => (
                         <ToDoItem
                             key={item.id}

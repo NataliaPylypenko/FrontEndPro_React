@@ -10,10 +10,12 @@ import {
     Blocks,
     SectionTag,
     ToDo,
-    ToDoSecond
+    ToDoSecond, ThemeSwitcher
 } from "./components";
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import Controller from "./components/controller/Controller";
+import ThemeContext from "./components/context/ThemeContext";
+import UserContext from "./components/context/UserContext";
 
 const animals = [
     {type: `turtle`, icon: `🐢`},
@@ -26,6 +28,8 @@ const animals = [
 class App extends Component {
 
     state = {
+        theme: 'light',
+        user: 'Mike',
         counter: 10,
         list: [
             {
@@ -82,6 +86,14 @@ class App extends Component {
         showTodoList: true,
     };
 
+    setTheme = theme => {
+        this.setState({ theme });
+    };
+
+    setUser = user => {
+        this.setState({ user });
+    };
+
     onClickPlus() {
         this.setState({
             counter: this.state.counter + 1
@@ -97,52 +109,60 @@ class App extends Component {
     render() {
         return (
             <div className='wrapper'>
-                <div>
-                    <Header />
-                    <Navbar counter={this.state.counter} />
-                </div>
+                <ThemeContext.Provider value={{ theme: this.state.theme, setTheme: this.setTheme }}>
 
-                <SectionTag className="chromatic">
-                    <ToDoSecond />
-                </SectionTag>
+                    <div>
+                        <Header />
+                        <Navbar counter={this.state.counter} />
+                    </div>
 
-                <SectionTag>
-                    <ToDo />
-                </SectionTag>
+                    <ThemeSwitcher />
 
-                <SectionTag className="chromatic">
-                    <Blocks list={this.state.list} />
-                </SectionTag>
+                    <UserContext.Provider value={this.state.user}>
+                        <SectionTag className="chromatic">
+                            <ToDoSecond />
+                        </SectionTag>
 
-                <SectionTag>
-                    <Counter
-                        counter={this.state.counter}
-                        onClickPlusCounter={this.onClickPlus.bind(this)}
-                        onClickMinusCounter={this.onClickMinus.bind(this)}
-                    />
-                </SectionTag>
+                        <SectionTag>
+                            <ToDo />
+                        </SectionTag>
+                    </UserContext.Provider>
 
-                <SectionTag className="chromatic">
-                    <Controller />
-                </SectionTag>
+                    <SectionTag className="chromatic">
+                        <Blocks list={this.state.list} />
+                    </SectionTag>
 
-                <SectionTag>
-                    {this.state.showTodoList && <TodoList list={this.state.list} />}
-                </SectionTag>
+                    <SectionTag>
+                        <Counter
+                            counter={this.state.counter}
+                            onClickPlusCounter={this.onClickPlus.bind(this)}
+                            onClickMinusCounter={this.onClickMinus.bind(this)}
+                        />
+                    </SectionTag>
 
-                <SectionTag className="chromatic">
-                    <Temperature />
-                </SectionTag>
+                    <SectionTag className="chromatic">
+                        <Controller />
+                    </SectionTag>
 
-                <SectionTag>
-                    <FunctionTable listAnimals={animals} title='Function Component' />
-                </SectionTag>
+                    <SectionTag>
+                        {this.state.showTodoList && <TodoList list={this.state.list} />}
+                    </SectionTag>
 
-                <SectionTag className="chromatic">
-                    <ClassTable list={animals} title='Class Component' />
-                </SectionTag>
+                    <SectionTag className="chromatic">
+                        <Temperature />
+                    </SectionTag>
 
-                <Footer />
+                    <SectionTag>
+                        <FunctionTable listAnimals={animals} title='Function Component' />
+                    </SectionTag>
+
+                    <SectionTag className="chromatic">
+                        <ClassTable list={animals} title='Class Component' />
+                    </SectionTag>
+
+                    <Footer />
+
+                </ThemeContext.Provider>
             </div>
         );
     }

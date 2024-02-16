@@ -92,3 +92,21 @@
   justify-content: space-between;
   color: #1abc9c;
 }
+
+.completed {
+  background-color: #8ddece;
+}
+
+.progress {
+  background-color: bisque;
+}
+
+.dark {
+  .completed {
+    background-color: darkslateblue;
+  }
+
+  .progress {
+    background-color: darkmagenta;
+  }
+}
