@@ -10,12 +10,14 @@ import {
     Blocks,
     SectionTag,
     ToDo,
-    ToDoSecond, ThemeSwitcher
+    ToDoSecond, ThemeSwitcher, CountryWeather
 } from "./components";
 import React, {Component, useState} from "react";
 import Controller from "./components/controller/Controller";
 import ThemeContext from "./components/context/ThemeContext";
 import UserContext from "./components/context/UserContext";
+
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const animals = [
     {type: `turtle`, icon: `🐢`},
@@ -109,60 +111,78 @@ class App extends Component {
     render() {
         return (
             <div className='wrapper'>
-                <ThemeContext.Provider value={{ theme: this.state.theme, setTheme: this.setTheme }}>
+                <Router>
+                    <Header />
+                    <Navbar counter={this.state.counter} />
 
-                    <div>
-                        <Header />
-                        <Navbar counter={this.state.counter} />
-                    </div>
+                    <Switch>
+                        <ThemeContext.Provider value={{ theme: this.state.theme, setTheme: this.setTheme }}>
+                            <Route path="/" exact>
+                                <SectionTag>
+                                    <CountryWeather />
+                                </SectionTag>
+                            </Route>
 
-                    <ThemeSwitcher />
+                            <Route path="/todoTheme">
+                                <ThemeSwitcher />
 
-                    <UserContext.Provider value={this.state.user}>
-                        <SectionTag className="chromatic">
-                            <ToDoSecond />
-                        </SectionTag>
+                                <UserContext.Provider value={this.state.user}>
+                                    <SectionTag className="chromatic">
+                                        <ToDoSecond />
+                                    </SectionTag>
 
-                        <SectionTag>
-                            <ToDo />
-                        </SectionTag>
-                    </UserContext.Provider>
+                                    <SectionTag>
+                                        <ToDo />
+                                    </SectionTag>
+                                </UserContext.Provider>
+                            </Route>
 
-                    <SectionTag className="chromatic">
-                        <Blocks list={this.state.list} />
-                    </SectionTag>
+                            <Route path="/blocks">
+                                <SectionTag className="chromatic">
+                                    <Blocks list={this.state.list} />
+                                </SectionTag>
+                            </Route>
 
-                    <SectionTag>
-                        <Counter
-                            counter={this.state.counter}
-                            onClickPlusCounter={this.onClickPlus.bind(this)}
-                            onClickMinusCounter={this.onClickMinus.bind(this)}
-                        />
-                    </SectionTag>
+                            <Route path="/counter">
+                                <SectionTag>
+                                    <Counter
+                                        counter={this.state.counter}
+                                        onClickPlusCounter={this.onClickPlus.bind(this)}
+                                        onClickMinusCounter={this.onClickMinus.bind(this)}
+                                    />
+                                </SectionTag>
 
-                    <SectionTag className="chromatic">
-                        <Controller />
-                    </SectionTag>
+                                <SectionTag className="chromatic">
+                                    <Controller />
+                                </SectionTag>
+                            </Route>
 
-                    <SectionTag>
-                        {this.state.showTodoList && <TodoList list={this.state.list} />}
-                    </SectionTag>
+                            <Route path="/todo">
+                                <SectionTag>
+                                    {this.state.showTodoList && <TodoList list={this.state.list} />}
+                                </SectionTag>
+                            </Route>
 
-                    <SectionTag className="chromatic">
-                        <Temperature />
-                    </SectionTag>
+                            <Route path="/temperature">
+                                <SectionTag className="chromatic">
+                                    <Temperature />
+                                </SectionTag>
+                            </Route>
 
-                    <SectionTag>
-                        <FunctionTable listAnimals={animals} title='Function Component' />
-                    </SectionTag>
+                            <Route path="/table">
+                                <SectionTag>
+                                    <FunctionTable listAnimals={animals} title='Function Component' />
+                                </SectionTag>
 
-                    <SectionTag className="chromatic">
-                        <ClassTable list={animals} title='Class Component' />
-                    </SectionTag>
+                                <SectionTag className="chromatic">
+                                    <ClassTable list={animals} title='Class Component' />
+                                </SectionTag>
+                            </Route>
+                        </ThemeContext.Provider>
+                    </Switch>
 
                     <Footer />
-
-                </ThemeContext.Provider>
+                </Router>
             </div>
         );
     }

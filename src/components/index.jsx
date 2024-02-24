@@ -8,3 +8,4 @@ export * from './sectionTag/SectionTag';
 export * from './toDo/ToDo';
 export * from './toDo/ToDoSecond';
 export * from './themeSwitcher/ThemeSwitcher';
+export * from './countryWeather/CountryWeather';
